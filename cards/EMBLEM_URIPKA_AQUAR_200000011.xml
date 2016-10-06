@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CARD_V2 ExportVersion="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///D:/PCGAME/Magic%202015%20-%20Garruks%20Revenge/duels-r6_b10/DATA_050/DATA_050/Data_All_Platforms/Card.xsd">
+	<FILENAME text="EMBLEM_URIPKA_AQUAR_200000011"/>
+	<CARDNAME text="EMBLEM"/>
+	<TITLE>
+		<LOCALISED_TEXT LanguageCode="zh-CN">徽记</LOCALISED_TEXT>
+	</TITLE>
+	<MULTIVERSEID value="200000011"/>
+	<ARTID value="200000010"/>
+	<COLOUR value=""/>
+	<ARTIST name="いちやん"/>
+	<CASTING_COST cost=""/>
+	<TYPE metaname="Emblem"/>
+	<EXPANSION value="N_A"/>
+	<RARITY metaname="E"/>
+	<TRIGGERED_ABILITY replacement_effect="1" active_zone="ZONE_COMMAND_GENERAL">
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">你的蓝色咒语费用减少{8}来施放</LOCALISED_TEXT>
+		<TRIGGER value="CONSIDERED_FOR_CAST" simple_qualifier="controller" pre_trigger="1">
+			return (TriggerObject():GetColour():Test( COLOUR_BLUE ))
+		</TRIGGER>
+		<RESOLUTION_TIME_ACTION>
+			if TriggerObject() ~= nil then
+				TriggerObject():DecreaseCost( 8 )
+			end
+		</RESOLUTION_TIME_ACTION>
+	</TRIGGERED_ABILITY>
+</CARD_V2>
