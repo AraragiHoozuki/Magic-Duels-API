@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CARD_V2 ExportVersion="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///D:/PCGAME/Magic%202015%20-%20Garruks%20Revenge/duels-r6_b10/DATA_050/DATA_050/Data_All_Platforms/Card.xsd">
+	<FILENAME text="URIPKA_AQUAR_200000010"/>
+	<CARDNAME text="URIPKA_AQUAR"/>
+	<TITLE>
+		<LOCALISED_TEXT LanguageCode="zh-CN">水之尤利普卡</LOCALISED_TEXT>
+	</TITLE>
+	<MULTIVERSEID value="381586"/>
+	<ARTID value="200000010"/>
+	<ARTIST name="いちやん"/>
+	<CASTING_COST cost="{2}{U}{U}"/>
+	<TYPE metaname="Planeswalker"/>
+	<SUB_TYPE metaname="Uripka"/>
+	<EXPANSION value="N_A"/>
+	<RARITY metaname="M"/>
+	<LOYALTY value="6" />
+	<ACTIVATED_ABILITY>
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">+2: 从你的牌库将一张蓝色咒语加入手牌，然后将你的牌库洗牌</LOCALISED_TEXT>
+		<SFX text="TARGET_BLUE_MAGIC_PLAY" />
+		<COST type="AddCountersSelf" amount="2" counter_type="Loyalty" />
+		<RESOLUTION_TIME_ACTION>
+			local filter = ClearFilter()
+			local effectController = EffectController()
+			filter:Add( FE_COLOUR, OP_IS, COLOUR_BLUE )
+			filter:SetZone( ZONE_LIBRARY, effectController )
+			effectController:SetItemCount( 1 )
+			for i = 0, (1-1) do
+				effectController:SetItemPrompt(i, "CARD_QUERY_CHOOSE_SPELL_TO_HAND" )
+			end
+			effectController:ChooseItems( EffectDC():Make_Targets(0) )
+		</RESOLUTION_TIME_ACTION>
+		<RESOLUTION_TIME_ACTION>
+			local target = EffectDC():Get_Targets(0):Get_CardPtr(0)
+			if  target ~= nil then
+				target:PutInHand( EffectController() )
+			end
+			EffectController():ShuffleLibrary()
+		</RESOLUTION_TIME_ACTION>
+	</ACTIVATED_ABILITY>
+	<ACTIVATED_ABILITY>
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">-3: 选择手中的一个蓝色咒语施放，且不需要支付其法术力费用</LOCALISED_TEXT>
+		<COST type="RemoveCountersSelf" amount="3" counter_type="Loyalty" />
+		<TARGET tag="CARD_QUERY_CHOOSE_SPELL_FOR_FREE" definition="0" compartment="0" count="1" />
+		<TARGET_DEFINITION id="0">
+			local filter = ClearFilter()
+			filter:SetZone( ZONE_HAND, EffectController() ) 
+			filter:Add(FE_COLOUR, OP_IS, COLOUR_BLUE)
+		</TARGET_DEFINITION>
+		<RESOLUTION_TIME_ACTION>
+			local target = EffectDC():Get_Targets(0):Get_CardPtr(0)
+			if target ~= nil then
+				EffectController():CastSpellForFree( target )
+			end
+		</RESOLUTION_TIME_ACTION>
+	</ACTIVATED_ABILITY>
+	<ACTIVATED_ABILITY>
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">-10: 你获得具有「你所有的蓝色咒语费用减少{8}」的徽记。</LOCALISED_TEXT>
+		<COST type="RemoveCountersSelf" amount="10" counter_type="Loyalty" />
+		<RESOLUTION_TIME_ACTION>
+			MTG():MakeEmblem( "EMBLEM_URIPKA_AQUAR_200000011", 1, EffectController() )
+		</RESOLUTION_TIME_ACTION>
+	</ACTIVATED_ABILITY>
+	<EXPLAIN play_tag="HINT_PLANESWALKER_ABILITY_WHY_PLAY" removal_tag="HINT_PLANESWALKER_WHY_REMOVE" is_removal="false" />
+	<TOKEN_REGISTRATION type="EMBLEM_URIPKA_AQUAR_200000011" reservation="1"/>
+	<QUERYTEXT tag="CARD_QUERY_CHOOSE_SPELL_TO_HAND">
+		<LOCALISED_TEXT LanguageCode="en-US"><![CDATA[]]></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN"><![CDATA[选择一个蓝色咒语加到手牌]]></LOCALISED_TEXT>
+	</QUERYTEXT>
+	<QUERYTEXT tag="CARD_QUERY_CHOOSE_SPELL_FOR_FREE">
+		<LOCALISED_TEXT LanguageCode="en-US"><![CDATA[]]></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN"><![CDATA[选择一咒语不支付法术力费用施放。]]></LOCALISED_TEXT>
+	</QUERYTEXT>
+</CARD_V2>
