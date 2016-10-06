@@ -103,6 +103,7 @@ CHARACTERISTIC_MUST_ATTACK_EACH_TURN
 
 ```lua
 CanPayManaCost("{}")
+CastSpellForFree(card)
 DiscardNRandomCards(int) --随机弃牌 int 张
 DrawCards(int)
 GainLife(int)
