@@ -1,5 +1,5 @@
 # MTG Magic Duels APIs
-
+{δ}: Energy counter
 ## Filter
 
 ### functions
