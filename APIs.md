@@ -1,4 +1,4 @@
-# MTG 2015 DIY 笔记
+# MTG Magic Duels APIs
 
 ## Filter
 
