@@ -106,6 +106,7 @@ CanPayManaCost("{}")
 CastSpellForFree(card)
 DiscardNRandomCards(int) --随机弃牌 int 张
 DrawCards(int)
+GainEnergyCounters(int)
 GainLife(int)
 GetLifeTotal()
 GetTeam()
