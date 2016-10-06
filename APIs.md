@@ -34,6 +34,7 @@ CounterSpell()
 DealDamageTo(amount, target)
 DecreseCost(integer)
 Destroy(sourceCard) --消灭 c，原因为 sourceCard
+DestroyWithoutRegenerate() --消灭 c 且不能重生
 Discard()
 GetController()
 GetCurrentCharacteristics() --获取当前属性
