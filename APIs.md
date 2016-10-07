@@ -107,6 +107,7 @@ GetTeam()
 Hand_Count()
 Library_GetNth(int)
 MyTurn() --return boolean
+Sacrifice(card)
 SetItemPrompt(i,"QUERY_TAG")
 ShuffleLibrary()
 ```
