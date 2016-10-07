@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CARD_V2 ExportVersion="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///D:/PCGAME/Magic%202015%20-%20Garruks%20Revenge/duels-r6_b10/DATA_050/DATA_050/Data_All_Platforms/Card.xsd">
+  <FILENAME text="TOKEN_ASTAROTHS_SENTENCE_200000006" />
+  <CARDNAME text="TOKEN_ASTAROTHS_SENTENCE" />
+  <TITLE>
+    <LOCALISED_TEXT LanguageCode="en-US"><![CDATA[阿斯塔罗斯的宣告]]></LOCALISED_TEXT>
+  </TITLE>
+  <MULTIVERSEID value="200000006" />
+  <ARTID value="200000006" />
+  <COLOUR value="B" />
+  <ARTIST name="Shadowverse" />
+  <CASTING_COST cost="" />
+  <TYPE metaname="Creature" />
+  <SUB_TYPE metaname="Demon" />
+  <EXPANSION value="N_A" />
+  <RARITY metaname="T" />
+  <POWER value="1" />
+  <TOUGHNESS value="1" />
+  <TOKEN/>
+  <STATIC_ABILITY>
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">敏捷</LOCALISED_TEXT>
+		<INTRINSIC characteristic="CHARACTERISTIC_HASTE" />
+  </STATIC_ABILITY>
+  <ACTIVATED_ABILITY>
+    <LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+    <LOCALISED_TEXT LanguageCode="zh-CN">牺牲阿斯塔罗斯的宣告: 目标牌手的生命变成1.</LOCALISED_TEXT>
+    <SFX text="TARGET_BLACK_MAGIC_PLAY" />
+    <COST type="SacrificeSelf" />
+    <TARGET tag="PLAYER_QUERY_LIFE_TO_1" definition="0" compartment="0" count="1" />
+    <TARGET_DEFINITION id="0">
+		local filter = ClearFilter()
+		filter:SetFilterType(FILTER_TYPE_PLAYERS)
+    </TARGET_DEFINITION>
+    <RESOLUTION_TIME_ACTION>
+		local player = EffectDC():Get_Targets(0):Get_PlayerPtr(0)
+		if player ~= nil then
+			local damage = player:GetLifeTotal() - 1
+			EffectSourceLKI():DealDamageTo( damage, player, REDIRECT_IMPLICIT_NO )
+		end
+    </RESOLUTION_TIME_ACTION>
+  </ACTIVATED_ABILITY>
+  <EXPLAIN play_tag="HINT_CREATURE_VANILLA_WHY_PLAY" removal_tag="HINT_CREATURE_VANILLA_WHY_REMOVE" is_removal="false" />
+  <QUERYTEXT tag="PLAYER_QUERY_LIFE_TO_1">
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">选择目标牌手</LOCALISED_TEXT>
+	</QUERYTEXT>
+  <SFX text="COMBAT_BLADE_LARGE_ATTACK" power_boundary_min="4" power_boundary_max="-1" />
+  <SFX text="COMBAT_BLADE_SMALL_ATTACK" power_boundary_min="1" power_boundary_max="3" />
+</CARD_V2>
+
+

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CARD_V2 ExportVersion="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///D:/PCGAME/Magic%202015%20-%20Garruks%20Revenge/duels-r6_b10/DATA_050/DATA_050/Data_All_Platforms/Card.xsd">
+	<FILENAME text="ROYAL_SABER_AURELIA_200000007"/>
+	<CARDNAME text="ROYAL_SABER_AURELIA"/>
+	<TITLE>
+		<LOCALISED_TEXT LanguageCode="zh-CN">皇家剑士奥蕾莉亚</LOCALISED_TEXT>
+	</TITLE>
+	<MULTIVERSEID value="200000007"/>
+	<ARTID value="200000007"/>
+	<ARTIST name="Shadowverse"/>
+	<CASTING_COST cost="{2}{W}{W}{W}"/>
+	<SUPERTYPE metaname="Legendary"/>
+	<TYPE metaname="Creature"/>
+	<SUB_TYPE metaname="Human"/>
+	<SUB_TYPE metaname="Soldier"/>
+	<EXPANSION value="N_A"/>
+	<RARITY metaname="M"/>
+	<POWER value="2"/>
+	<TOUGHNESS value="8"/>
+	<STATIC_ABILITY>
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">警戒</LOCALISED_TEXT>
+		<INTRINSIC characteristic="CHARACTERISTIC_VIGILANCE"/>
+	</STATIC_ABILITY>
+	<TRIGGERED_ABILITY>
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">当皇家剑士奥蕾莉亚进入战场时，对手每控制一个生物，她便获得+1/+0, 如果对手控制3个或以上的生物，再获得辟邪</LOCALISED_TEXT>
+		<TRIGGER value="ZONECHANGE_END" simple_qualifier="self" to_zone="ZONE_BATTLEFIELD" from_zone="ZONE_ANY"/>
+		<RESOLUTION_TIME_ACTION>
+			if EffectSource() ~= nil then
+				local filter = ClearFilter()
+				filter:Add( FE_TYPE, OP_IS, CARD_TYPE_CREATURE )
+				filter:Add( FE_CONTROLLER, OP_NOT, EffectController() )
+				local n = filter:Count()
+				EffectDC():Set_Int(0, n)
+			end
+		</RESOLUTION_TIME_ACTION>
+		<CONTINUOUS_ACTION layer="7C">
+			local n = EffectDC():Get_Int(0)
+			if EffectSource() ~= nil then
+				local characteristics = EffectSource():GetCurrentCharacteristics()
+				characteristics:Power_Add( n )
+				characteristics:Toughness_Add( 0 )
+				if n &gt;= 3 then
+					characteristics:Bool_Set( CHARACTERISTIC_HEXPROOF, 1 )
+				end
+			end
+		</CONTINUOUS_ACTION>
+		<DURATION>
+			return (EffectSource() == nil)  
+		</DURATION>
+	</TRIGGERED_ABILITY>
+</CARD_V2>

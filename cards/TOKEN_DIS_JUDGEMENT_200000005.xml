@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CARD_V2 ExportVersion="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///D:/PCGAME/Magic%202015%20-%20Garruks%20Revenge/duels-r6_b10/DATA_050/DATA_050/Data_All_Platforms/Card.xsd">
+  <FILENAME text="TOKEN_DIS_JUDGEMENT_200000005" />
+  <CARDNAME text="TOKEN_DIS_JUDGEMENT" />
+  <TITLE>
+	    <LOCALISED_TEXT LanguageCode="en-US"><![CDATA[迪斯的裁决]]></LOCALISED_TEXT>
+  </TITLE>
+  <MULTIVERSEID value="200000005" />
+  <ARTID value="200000005" />
+  <COLOUR value="B" />
+  <ARTIST name="Shadowverse" />
+  <CASTING_COST cost="" />
+  <TYPE metaname="Creature" />
+  <SUB_TYPE metaname="Demon" />
+  <EXPANSION value="N_A" />
+  <RARITY metaname="T" />
+  <POWER value="7" />
+  <TOUGHNESS value="7" />
+  <TOKEN/>
+  <STATIC_ABILITY>
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">敏捷</LOCALISED_TEXT>
+		<INTRINSIC characteristic="CHARACTERISTIC_HASTE" />
+  </STATIC_ABILITY>
+  <ACTIVATED_ABILITY>
+    <LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+    <LOCALISED_TEXT LanguageCode="zh-CN">{T}: 对目标生物或牌手造成7点伤害，你得到14点生命</LOCALISED_TEXT>
+    <SFX text="TARGET_FIRE_PLAY" />
+    <COST type="TapSelf" />
+    <TARGET tag="CARD_QUERY_CHOOSE_DEAL_7_DAMAGE" definition="0" compartment="0" count="1" />
+    <TARGET_DEFINITION id="0">
+		local filter = ClearFilter()
+		filter:SetFilterType( FILTER_TYPE_CARDS + FILTER_TYPE_PLAYERS )
+		filter:Set_Or()
+		filter:Add( FE_TYPE, OP_IS, CARD_TYPE_CREATURE )
+		filter:Add( FE_TYPE, OP_IS, CARD_TYPE_PLANESWALKER )
+    </TARGET_DEFINITION>
+    <RESOLUTION_TIME_ACTION>
+		local target_card = EffectDC():Get_Targets(0):Get_CardPtr(0)
+		local target_player = EffectDC():Get_Targets(0):Get_PlayerPtr(0)
+		if ( target_card ~= nil and target_card:GetCardType():Test( CARD_TYPE_CREATURE ) ) then
+			EffectSourceLKI():DealDamageTo( 7, target_card )
+			EffectController():GainLife( 14 )
+		elseif ( target_player ~= nil ) then   
+			EffectSourceLKI():DealDamageTo( 7, target_player, REDIRECT_IMPLICIT_NO )
+			EffectController():GainLife( 14 )
+		elseif ( target_card ~= nil and target_card:GetCardType():Test( CARD_TYPE_PLANESWALKER ) ) then
+			local card_controller = target_card:GetPlayer()
+			EffectSourceLKI():DealDamageTo( 7, target_card, card_controller, REDIRECT_IMPLICIT_YES )
+			EffectController():GainLife( 14 )
+		end
+    </RESOLUTION_TIME_ACTION>
+  </ACTIVATED_ABILITY>
+  <EXPLAIN play_tag="HINT_CREATURE_VANILLA_WHY_PLAY" removal_tag="HINT_CREATURE_VANILLA_WHY_REMOVE" is_removal="false" />
+  <QUERYTEXT tag="CARD_QUERY_CHOOSE_DEAL_7_DAMAGE">
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">选择一个生物或牌手，以对其造成7点伤害。</LOCALISED_TEXT>
+  </QUERYTEXT>
+  <SFX text="COMBAT_BLADE_LARGE_ATTACK" power_boundary_min="4" power_boundary_max="-1" />
+  <SFX text="COMBAT_BLADE_SMALL_ATTACK" power_boundary_min="1" power_boundary_max="3" />
+</CARD_V2>
+

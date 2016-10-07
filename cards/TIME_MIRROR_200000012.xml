@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CARD_V2 ExportVersion="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///D:/PCGAME/Magic%202015%20-%20Garruks%20Revenge/duels-r6_b10/DATA_050/DATA_050/Data_All_Platforms/Card.xsd">
+	<FILENAME text="TIME_MIRROR_200000012"/>
+	<CARDNAME text="TIME_MIRROR"/>
+	<TITLE>
+		<LOCALISED_TEXT LanguageCode="zh-CN">时间镜像</LOCALISED_TEXT>
+	</TITLE>
+	<MULTIVERSEID value="200000012"/>
+	<ARTID value="200000012"/>
+	<ARTIST name="swd3e2"/>
+	<CASTING_COST cost="{2}{U}{U}{U}{U}{U}{U}"/>
+	<SUPERTYPE metaname="Legendary"/>
+	<TYPE metaname="Enchantment"/>
+	<EXPANSION value="N_A"/>
+	<RARITY metaname="M"/>
+	<TRIGGERED_ABILITY>
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">每当一个咒语被施放时，在你的控制下复制它，并重新选择目标（若它有目标）。</LOCALISED_TEXT>
+		<TRIGGER value="SPELL_PLAYED"/>
+		<RESOLUTION_TIME_ACTION>
+			local target = TriggerObject()
+			if target == nil then
+				return
+			end
+			if EffectSource() ~= nil then
+				local copy = EffectController():CopySpell( target )
+				EffectController():ChooseNewTargets( copy )
+			end
+		</RESOLUTION_TIME_ACTION>
+	</TRIGGERED_ABILITY>
+</CARD_V2>

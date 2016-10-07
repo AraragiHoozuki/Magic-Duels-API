@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CARD_V2 ExportVersion="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///D:/PCGAME/Magic%202015%20-%20Garruks%20Revenge/duels-r6_b10/DATA_050/DATA_050/Data_All_Platforms/Card.xsd">
+	<FILENAME text="TEACHING_OF_CREATION_200000015"/>
+	<CARDNAME text="EARTH_SIGIL"/>
+	<TITLE>
+		<LOCALISED_TEXT LanguageCode="zh-CN">创造魔术</LOCALISED_TEXT>
+	</TITLE>
+	<MULTIVERSEID value="200000015"/>
+	<ARTID value="200000015"/>
+	<ARTIST name="Shadowverse"/>
+	<CASTING_COST cost="{C}"/>
+	<FLAVOURTEXT>
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">创造出了个什么？</LOCALISED_TEXT>
+	</FLAVOURTEXT>
+	<TYPE metaname="Enchantment"/>
+	<EXPANSION value="N_A"/>
+	<RARITY metaname="R"/>
+	<STATIC_ABILITY>
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">奥金(拥有奥金异能的永久物的名称视为奥金)</LOCALISED_TEXT>
+	</STATIC_ABILITY>
+	<TRIGGERED_ABILITY>
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">当创造魔术进入战场时，你抓1张牌</LOCALISED_TEXT>
+		<TRIGGER value="ZONECHANGE_END" simple_qualifier="self" from_zone="ZONE_ANY" to_zone="ZONE_BATTLEFIELD"/>
+		<RESOLUTION_TIME_ACTION>
+			if EffectSource() ~= nil then
+				EffectController():DrawCards(1)
+			end
+		</RESOLUTION_TIME_ACTION>
+	</TRIGGERED_ABILITY>
+</CARD_V2>

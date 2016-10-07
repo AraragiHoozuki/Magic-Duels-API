@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CARD_V2 ExportVersion="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///D:/PCGAME/Magic%202015%20-%20Garruks%20Revenge/duels-r6_b10/DATA_050/DATA_050/Data_All_Platforms/Card.xsd">
+	<FILENAME text="LUCIFER_LIGHT_200000008"/>
+	<CARDNAME text="LUCIFER_LIGHT"/>
+	<TITLE>
+		<LOCALISED_TEXT LanguageCode="zh-CN">路西法</LOCALISED_TEXT>
+	</TITLE>
+	<MULTIVERSEID value="200000008"/>
+	<ARTID value="200000008"/>
+	<TRANSFORMATION value="LUCIFER_DARK_200000009" icon="SUN" />
+	<ARTIST name="Shadowverse"/>
+	<CASTING_COST cost="{7}{W}"/>
+	<SUPERTYPE metaname="Legendary"/>
+	<TYPE metaname="Creature"/>
+	<SUB_TYPE metaname="Angel"/>
+	<EXPANSION value="N_A"/>
+	<RARITY metaname="M"/>
+	<POWER value="4"/>
+	<TOUGHNESS value="8"/>
+	<STATIC_ABILITY>
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">飞行</LOCALISED_TEXT>
+		<INTRINSIC characteristic="CHARACTERISTIC_FLYING"/>
+	</STATIC_ABILITY>
+	<STATIC_ABILITY commaspace="1">
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">警戒</LOCALISED_TEXT>
+		<INTRINSIC characteristic="CHARACTERISTIC_VIGILANCE"/>
+	</STATIC_ABILITY>
+	<TRIGGERED_ABILITY>
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">在你的结束步骤开始时，你的生命变成2倍</LOCALISED_TEXT>
+		<TRIGGER value="BEGINNING_OF_PLAYERS_STEP" simple_qualifier="controller" to_zone="ZONE_ANY" from_zone="ZONE_ANY">
+			return MTG():GetStep() == STEP_END_OF_TURN
+		</TRIGGER>
+		<RESOLUTION_TIME_ACTION>
+		    local source = EffectSource()
+		    if source ~= nil then
+				local life = source:GetController():GetLifeTotal()
+				source:GetController():GainLife( life )
+			end
+		</RESOLUTION_TIME_ACTION>
+	</TRIGGERED_ABILITY>
+	<TRIGGERED_ABILITY>
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">在你的维持开始时，若你的生命大于或等于100，将路西法转化</LOCALISED_TEXT>
+		<TRIGGER value="BEGINNING_OF_PLAYERS_STEP" simple_qualifier="controller">
+			return MTG():GetStep() == STEP_UPKEEP and EffectController():GetLifeTotal() &gt;= 100
+		</TRIGGER>
+		<RESOLUTION_TIME_ACTION>
+			if EffectSource() ~= nil then
+				EffectSource():Transform()
+			end
+		</RESOLUTION_TIME_ACTION>
+	</TRIGGERED_ABILITY>
+</CARD_V2>

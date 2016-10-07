@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CARD_V2 ExportVersion="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///D:/PCGAME/Magic%202015%20-%20Garruks%20Revenge/duels-r6_b10/DATA_050/DATA_050/Data_All_Platforms/Card.xsd">
+	<FILENAME text="MAGE_PANGUINE_200000016"/>
+	<CARDNAME text="MAGE_PANGUINE"/>
+	<TITLE>
+		<LOCALISED_TEXT LanguageCode="zh-CN">企术士</LOCALISED_TEXT>
+	</TITLE>
+	<MULTIVERSEID value="200000016"/>
+	<ARTID value="200000016"/>
+	<ARTIST name="Shadowverse"/>
+	<CASTING_COST cost="{2}"/>
+	<TYPE metaname="Creature"/>
+	<SUB_TYPE metaname="Wizard"/>
+	<EXPANSION value="N_A"/>
+	<RARITY metaname="C"/>
+	<POWER value="2"/>
+	<TOUGHNESS value="2"/>
+	<TRIGGERED_ABILITY>
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">炼金（当你施放拥有炼金异能的咒语时，若你拥有奥金，消灭之并发动炼金效果）：企术士获得 +2/+2 并获得警戒</LOCALISED_TEXT>
+		<SFX text="TARGET_BLUNT_PLAY"/>
+		<TRIGGER value="ZONECHANGE_END" simple_qualifier="self" from_zone="ZONE_ANY" to_zone="ZONE_BATTLEFIELD"/>
+		<TARGET tag="CARD_QUERY_ALCHEMY" definition="0" compartment="0" count="1" up_to="1" />
+		<TARGET_DEFINITION id="0">
+			local filter = ClearFilter()
+			filter:Add(FE_CARD_NAME, OP_IS, "EARTH_SIGIL")
+			filter:Add(FE_CONTROLLER, OP_IS, EffectController() )
+		</TARGET_DEFINITION>
+		<RESOLUTION_TIME_ACTION>
+			local n = EffectDC():Get_Targets(0):Count()
+			for i = 0, n-1 do
+				local target = EffectDC():Get_Targets(0):Get_CardPtr(i)
+				if target ~= nil then
+					target:Destroy(EffectSource())
+				end
+			end
+			EffectDC():Make_Chest(0):Set_Int(0,n)
+		</RESOLUTION_TIME_ACTION>
+		<CONTINUOUS_ACTION layer="7C">
+			local n = EffectDC():Get_Chest(0):Get_Int(0)
+			if n &gt; 0 then
+				local characteristics = EffectSource():GetCurrentCharacteristics()
+				characteristics:Power_Add(2)
+				characteristics:Toughness_Add(2)
+				characteristics:Bool_Set(CHARACTERISTIC_VIGILANCE,1)
+			end
+		</CONTINUOUS_ACTION>
+		<DURATION>
+			return EffectSource() == nil
+		</DURATION>
+	</TRIGGERED_ABILITY>
+	<QUERYTEXT tag="CARD_QUERY_ALCHEMY">
+		<LOCALISED_TEXT LanguageCode="en-US"></LOCALISED_TEXT>
+		<LOCALISED_TEXT LanguageCode="zh-CN">选择使用的奥金</LOCALISED_TEXT>
+	</QUERYTEXT>
+</CARD_V2>
