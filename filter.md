@@ -2,6 +2,7 @@
 
 ### filter:add conditions
 `Add(filterType, operator , cardType)`
+
 filterType:
 ```lua
 FE_TYPE
@@ -26,7 +27,9 @@ CARD_TYPE_XXXX,CREATURE_TYPE_XXXX
 ```
 ### set filter zone
 `SetZone(zone,player)`
-SetFilterType( FILTER_TYPE_PLAYERS + FILTER_TYPE_CARDS )
+
+### set filter type
+`SetFilterType( FILTER_TYPE_PLAYERS + FILTER_TYPE_CARDS )`
 
 ### other functions
 ```lua
