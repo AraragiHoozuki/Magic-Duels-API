@@ -1,2 +1,2 @@
-# MTGSkills
-万智牌技能库 2015 pc 端
+# Magic Duels API
+万智牌 API MAGIC DUELS
