@@ -3,23 +3,38 @@
 ## Filter
 
 ### functions
-
-`Add(filterType, operator , cardType)`
-
-- filterType: `FE_TYPE`, `FE_PLAYER_INSTANCE`, `FE_SUBTYPE` , `FE_CONTROLLER`, `FE_CHARACTERISTIC`, `FE_NUM_COLOURS`, `FE_IS_SPELL`, `FE_CARD_NAME`, `FE_CARD_INSTANCE`
-- operator:`OP_IS, OP_NOT, OP_GREATER_THAN`
-- cardType:`CARD_TYPE_XXXX`,`CREATURE_TYPE_XXXX`
-
-`SetZone(zone,player)`
-
-- zone:`ZONE_LIBRARY, ZONE_HAND` etc.
-- player: player
-
-`SetFilterType( FILTER_TYPE_PLAYERS + FILTER_TYPE_CARDS )`
-
-`Count`: 很好理解……
-
-`CountStopAt(int)`: returns integer
+```lua
+Add()
+AddSubFilter()
+AddSubFilter_And()
+AddSubFilter_Or()
+AnyHaveCharacteristic()
+ChromaCount()
+Clear()
+Count()
+CountStopAt()
+EvaluateObjects()
+EvaluatePlayers()
+GetNthEvaluatedObject()
+GetNthEvaluatedPlayer()
+GetNumCardTypes()
+GetNumCombinedColours()
+GetRandomEvaluatedObject()
+HasAtLeast()
+Invalidate()
+SetFilterType()
+SetHint()
+SetMarkedObjectsOnly()
+SetPortion()
+SetReversePortion()
+SetStackObjectType()
+SetUnique()
+SetUnmarkedObjectsOnly()
+SetZone()
+Set_And()
+Set_Or()
+ThrowAwayAllButNRandomObjects()
+```
 
 ## Card
 
