@@ -34,6 +34,14 @@ SetZone()
 Set_And()
 Set_Or()
 ThrowAwayAllButNRandomObjects()
+------------------subfilter
+Add()
+AddSubFilter()
+AddSubFilter_And()
+AddSubFilter_Or()
+SetFilterType()
+Set_And()
+Set_Or()
 ```
 
 ## Card
